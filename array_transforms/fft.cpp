@@ -56,7 +56,7 @@ namespace FFT {
                 ld ang = 2 * PI / (len * 2);
                 roots[1] = T(cos(ang), sin(ang));
             }
-            for (int i = 1; i < len; ++i) {
+            for (int i = 2; i < len; ++i) {
                 roots[i] = roots[i >> 1] * roots[(i + 1) >> 1];
             }
             for (int i = 0; i < n; i += len * 2) {
