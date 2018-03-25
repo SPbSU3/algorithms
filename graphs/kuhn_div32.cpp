@@ -25,6 +25,10 @@ bitset<N> nusedmt;
 typedef unsigned int uint;
 
 #define ford(i, n) for (int i = n - 1; i >= 0; i--)
+
+// one iteration of dfs;
+// is - bipartite graph in bitset form
+
 bool dfs (int pos)
 {
     used[pos] = 1;
@@ -89,7 +93,7 @@ void solve (int n)
     memn = n;
     int q;
     cin >> q;
-
+    
     forn (i, N)
         is[i] = ~bitset<N>();
 
