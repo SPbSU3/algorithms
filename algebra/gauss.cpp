@@ -45,11 +45,11 @@ vector<pair<ld, bool>> gauss(vector<vector<ld>> a) {
 		
 	// checking
 	for (int i = 0; i < n; i++) {
-        if (fabs(a[i][m]) >= eps) {
-            ld den = a[i][m];
-            for (int j = 0; j <= m; j++)
-                a[i][j] /= den; 
-        }
+        	if (fabs(a[i][m]) >= eps) {
+            		ld den = a[i][m];
+            		for (int j = 0; j <= m; j++)
+                		a[i][j] /= den; 
+		}
 
 		ld sum = 0;
 		for (int j = 0; j < m; j++) {
