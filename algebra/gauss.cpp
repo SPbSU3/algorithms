@@ -4,7 +4,7 @@ const ld eps = 1e-9;
 // Returns vector of solutions of the given linear system.
 // Result is empty iff the system is incompatible.
 // Otherwise the result equals {(x[i], type[i])}_i, where type[i] = true <=> value of x[i] is fixed.
-vector<pair<ld, int>> gauss(vector<vector<ld>> a) {
+vector<pair<ld, bool>> gauss(vector<vector<ld>> a) {
 	vector<pair<ld, bool>> res; 
 	
 	int n = sz(a);
