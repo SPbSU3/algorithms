@@ -5,18 +5,16 @@ const ld eps = 1e-9;
 // Result is empty iff the system is incompatible.
 // Otherwise the result equals {(x[i], type[i])}_i, where type[i] = true <=> value of x[i] is fixed.
 vector<pair<ld, bool>> gauss(vector<vector<ld>> a) {
-	vector<pair<ld, bool>> res; 
-	
 	int n = sz(a);
-	if (n == 0) {
-		return res;
-	}
 	int m = sz(a[0]) - 1;
+	
+	vector<pair<ld, bool>> res; 
 	
 	vi where;
 	res.resize(m, {0, 0});
 	where.resize(m, -1);	
-	
+
+	// eliminating  
 	for (int col = 0, row = 0; col < m && row < n; col++) {
 		int id = row;
 		for (int j = row; j < n; j++)
@@ -30,27 +28,29 @@ vector<pair<ld, bool>> gauss(vector<vector<ld>> a) {
 			swap(a[row][j], a[id][j]);
 		where[col] = row;	
 		
-		for (int j = 0; j < n; j++) {
+		for (int j = 0; j < n; j++)
 			if (j != row) {
 				ld C = -a[j][col] / a[row][col];
-				for (int k = 0; k <= m; k++) {
+				for (int k = 0; k <= m; k++)
 					a[j][k] += a[row][k] * C;	
-				}
 			}
-		}
 			
 		row++;
 	}
-	
-	//assigning
-	for (int i = 0; i < m; i++) {
-		if (where[i] != -1) {
+
+	// assigning
+	for (int i = 0; i < m; i++)
+		if (where[i] != -1)
 			res[i] = {a[where[i]][m] / a[where[i]][i], 1};
-		}
-	}
 		
-	//checking
+	// checking
 	for (int i = 0; i < n; i++) {
+        if (fabs(a[i][m]) >= eps) {
+            ld den = a[i][m];
+            for (int j = 0; j <= m; j++)
+                a[i][j] /= den; 
+        }
+
 		ld sum = 0;
 		for (int j = 0; j < m; j++) {
 			sum += res[j].fst * a[i][j];
@@ -63,3 +63,4 @@ vector<pair<ld, bool>> gauss(vector<vector<ld>> a) {
 	
 	return res;
 }
+
