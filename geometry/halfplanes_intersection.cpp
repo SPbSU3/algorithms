@@ -139,7 +139,7 @@ struct directed_line {
 
     directed_line(pt _o, pt _v): o(_o), v(_v) {}
 
-    // converts semiplane Ax+By+C>0 to semiplane v%(P-o)>0
+    // converts halfplane Ax+By+C>0 to halfplane v%(P-o)>0
     directed_line(ld A, ld B, ld C) {
         if (!eq(B, 0)) {
             o = pt(0, -C / B); 
@@ -169,7 +169,7 @@ struct directed_line {
         ld det = a11 * a22 - a12 * a21;
         ld t = (b1 * a22 - a12 * b2) / det;
         return o + v * t;
-	}
+    }
 };
 
 ld plane_int(vector<directed_line> a) {
