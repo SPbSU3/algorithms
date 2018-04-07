@@ -1,5 +1,19 @@
-using T = long double; // or long long
-const long double eps = 1e-9;
+using ld = long double;
+using T = ld; // or ll
+const ld eps = 1e-9;
+
+bool eq(ld a, ld b) {
+    return fabs(a - b) < eps;
+}
+
+#define less sdfsdgsdgsdfg
+bool less(ld a, ld b) {
+    return a <= b - eps;
+}
+
+bool lessE(ld a, ld b) {
+    return a < b + eps;
+}
 
 struct pt {
     T x, y;
@@ -10,6 +24,10 @@ struct pt {
 
     void read() {
         cin >> x >> y;
+    }
+
+    void print() const {
+        eprintf("%.6lf %.6lf", (double)x, (double)y);
     }
 
     pt operator+(const pt &p) const {
@@ -47,6 +65,18 @@ struct pt {
         return x * x + y * y;
     }
 
+    ld len() const {
+        return sqrt(sqlen());
+    }
+
+    ld dist(const pt &p) const {
+        return (*this - p).len();
+    }
+
+    int half() const {
+        return (less(0, y) || (eq(0, y) && less(0, x))) ? 0 : 1;
+    }
+
     bool cmp(const pt &p) const {
         T prod = *this % p;
         if (fabs(prod) <= eps) {
@@ -54,6 +84,11 @@ struct pt {
         }
         return this->sqlen() < p.sqlen();
     }
+
+// only for doubles
+    pt norm() {
+        ld L = len();
+        assert(L > eps);
+        return pt(x / L, y / L);
+    }
 };
-
-
