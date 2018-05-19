@@ -62,6 +62,7 @@ vi brut_conv (const vi &a, const vi &b)
     return ans;
 }
 
+// --------------------------------------
 // algorithm itself starts here
 void mobius (int* a, int n, int sign)
 {
@@ -123,6 +124,7 @@ vi fast_conv (vi a, vi b)
     return a;
 }
 // algorithm itself ends here
+// ----------------------------------------------
 
 void print (const vi &v)
 {
