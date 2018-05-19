@@ -57,6 +57,7 @@ vi brut_mult (const vi &a, const vi &b)
     return ans;
 }
 
+// -------------------------------------------
 // algorithm itself starts here
 void hadamard (int *a, int len)
 {
@@ -99,6 +100,7 @@ vi had_mult (vi a, vi b)
     return a;
 }
 // algorithm itself ends here
+// ------------------------------------------------------------
 
 void print (const vi &v)
 {
