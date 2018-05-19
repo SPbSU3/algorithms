@@ -32,6 +32,8 @@ using vii = vector<pii>;
 
 #define FILE_NAME "a"
 
+// ------------------------------------------
+
 void remax (int &x, int y)
 {
     x = max(x, y);
@@ -119,6 +121,7 @@ int fast_lcs (const string &s, const string &t)
     return cnt;
 }
 // algorithm itself ends here
+// ----------------------------------------------
 
 double time ()
 {
