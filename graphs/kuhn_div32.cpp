@@ -16,6 +16,8 @@ typedef vector<pii> vii;
 #define sz(c) (int)(c).size()
 #define all(c) (c).begin(), (c).end()
 
+// ---------------------------------------
+
 const int N = (((int)1e4 + 32) / 32) * 32;
 bitset<N> is[N];
 int mt[N], rev_mt[N], used[N];
@@ -133,6 +135,7 @@ void solve (int n)
 
     cout << ans << endl;
 }
+// ---------------------------------------------
 
 int main()
 {

@@ -1,5 +1,3 @@
-// directed spanning tree in O(Elog^2{E} + V)
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -24,6 +22,9 @@ using namespace std;
 using ll = long long;
 using vi = vector<int>;
 using pii = pair<int, int>;
+
+// ---------------------------------------------
+// directed spanning tree in O(Elog^2{E} + V)
 
 struct Edge {
     int v, to, w, id;
@@ -236,6 +237,7 @@ void solve() {
         cout << e.id + 1 << '\n';
     }
 }
+// --------------------------------------------
 
 int main() {
     ios_base::sync_with_stdio(false);
