@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cassert>
+#include <cmath>
+#include <complex>
 
 using namespace std;
 
@@ -22,9 +26,12 @@ using namespace std;
 using ll = long long;
 using vi = vector<int>;
 using pii = pair<int, int>;
+using vll = vector<ll>;
+
+// --------------------------------------------
 
 namespace FFT {
-    using ld = double;
+    using ld = double; // long double
     using T = complex<ld>;
 
     const ld PI = acosl(-1.0);
@@ -33,8 +40,35 @@ namespace FFT {
     const int MAXN = 1 << MAXB;
 
     int rev[MAXN];
+    T roots[MAXN];
+
+    bool was_precalc{false};
+    void precalc() {
+        if  (was_precalc) {
+            return;
+        }
+        was_precalc = 1;
+
+        roots[0] = 1;
+        int j = -1;
+        for (int i = 1; i < MAXN; ++i) {
+            if  ((i & (i - 1)) == 0) { // || true (always use exact angle)
+                ld ang = 2 * PI / MAXN * i;
+                roots[i] = T(cos(ang), sin(ang));
+                ++j;
+            } else {
+                roots[i] = roots[1 << j] * roots[i ^ (1 << j)];
+            }
+        }
+    }
+
+    T get_root(int k, int n) {
+        return roots[k * (MAXN / n)];
+    }
 
     void fft(T* a, int K, bool inv) {
+        precalc();
+
         const int n = 1 << K;
 
         rev[0] = 0;
@@ -49,19 +83,13 @@ namespace FFT {
         }
 
         for (int len = 1; len < n; len *= 2) {
-            vector<T> roots(len);
-            // slightly faster on big (>2^17) n, if all roots precalculated
-            roots[0] = 1;
-            if  (len > 1) {
-                ld ang = 2 * PI / (len * 2);
-                roots[1] = T(cos(ang), sin(ang));
-            }
-            for (int i = 2; i < len; ++i) {
-                roots[i] = roots[i >> 1] * roots[(i + 1) >> 1];
+            vector<T> rs(len);
+            forn(i, len) {
+                rs[i] = get_root(i, len * 2);
             }
             for (int i = 0; i < n; i += len * 2) {
                 forn(j, len) {
-                    const auto& w = roots[j];
+                    const auto& w = rs[j];
                     const auto x = a[i + j];
                     const auto y = a[i + len + j];
                     a[i + j] = x + w * y;
@@ -79,7 +107,7 @@ namespace FFT {
         }
     }
 
-    vi mult(const vi& a, const vi& b) {
+    vll mult(const vi& a, const vi& b) {
         int K = 0;
         while ((1 << K) < max(sz(a), sz(b))) {
             ++K;
@@ -103,7 +131,7 @@ namespace FFT {
         }
         fft(A.data(), K, true);
 
-        vi res(sz(A));
+        vll res(sz(A));
         forn(i, sz(A)) {
             res[i] = round(A[i].real());
         }
@@ -113,8 +141,8 @@ namespace FFT {
         return res;
     }
 
-    vi brut_mult(const vi& a, const vi& b) {
-        vi c(sz(a) + sz(b));
+    vll brut_mult(const vi& a, const vi& b) {
+        vll c(sz(a) + sz(b));
         forn(i, sz(a)) {
             forn(j, sz(b)) {
                 c[i + j] += a[i] * b[j];
@@ -123,6 +151,7 @@ namespace FFT {
         return c;
     }
 };
+// -------------------------------------------------
 
 double cur_time() {
     return clock() * 1.0 / CLOCKS_PER_SEC;
@@ -141,26 +170,47 @@ int main() {
         vi a{1, 2, 3, 4, 5};
         vi b{5, 4, 3, 2, 1};
 
-        vi my = FFT::mult(a, b);
-        vi br = FFT::brut_mult(a, b);
+        vll my = FFT::mult(a, b);
+        vll br = FFT::brut_mult(a, b);
 
         eprintf("\nmy:\n");
         forn(i, sz(my)) {
-            eprintf("%d ", my[i]);
+            eprintf("%lld ", my[i]);
         }
         eprintf("\n");
         
         eprintf("br:\n");
         forn(i, sz(br)) {
-            eprintf("%d ", br[i]);
+            eprintf("%lld ", br[i]);
         }
         eprintf("\n\n");
     }
 
     {
+        srand(123);
+        const int MAX = 1e5;
+        const int B = 18;
+        vi a(1 << B);
+        vi b(1 << B);
+        forn(i, 1 << B) {
+            a[i] = rand() % MAX;
+            b[i] = rand() % MAX;
+        }
+
+        auto res = FFT::mult(a, b);
+
+        ll h = 0;
+        for (auto x : res) {
+            h ^= x;
+        }
+        eprintf("h = %lld\n", h);
+        return 0;
+    }
+
+    {
         for (int B = 0; B < 21; ++B) {
             const int N = 1 << B;
-            const int iters = 10;
+            const int iters = 4;
             double sum = 0;
             forn(it, iters) {
                 vi a(N);
@@ -171,7 +221,7 @@ int main() {
                 }
 
                 auto st = cur_time();
-                vi c = FFT::mult(a, b);
+                auto c = FFT::mult(a, b);
                 sum += cur_time() - st;
             }
 
