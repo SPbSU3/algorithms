@@ -1,0 +1,139 @@
+%\documentclass[a4paper,oneside,twocolumn]{article}
+\documentclass[a4paper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{graphicx}
+
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\linespread{1.1}
+
+%\usepackage{eulervm}
+
+\usepackage[left=.75cm,right=.5cm,top=2.1cm,bottom=.5cm]{geometry}
+
+\setlength{\columnseprule}{0.25pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R,RO]{\bfseries\thepage}
+\fancyhead[L,LO]{Saint Petersburg State University, SPb SU 3}
+
+\usepackage{listings}
+
+\usepackage{sectsty}
+\sectionfont{\normalsize}
+
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+\usepackage{fancyvrb}
+\fvset{tabsize=2}
+
+\lstset{language=C++,
+                basicstyle=\ttfamily,
+                keywordstyle=\color[rgb]{0,0,0.7},
+                stringstyle=\color[rgb]{0.5,0,0},
+                commentstyle=\color[rgb]{0,0.5,0},
+                morecomment=[l][\color[rgb]{0.5,0.5,0}]{\#},
+                breaklines=true,
+                tabsize=2
+}
+
+\newcommand{\SECTION}[2]{\section*{#1} \addcontentsline{toc}{subsection}{#1} #2 \begin{center}\rule{400pt}{0.25pt}\end{center}}
+\newcommand{\sourcefile}[1]{\lstinputlisting{src/#1}}
+\newcommand{\Csourcefile}[1]{\lstinputlisting[language=C++]{src/#1.cpp}}
+\newcommand{\Psourcefile}[1]{\lstinputlisting[language=Python]{src/#1.py}}
+%\begin{center}\textbf{#1.cpp}\end{center}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\then}{\Longrightarrow}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\brackets}[1]{\left[#1\right]}
+\newcommand{\braces}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\nequiv}{\not\equiv}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\norm}[1]{\abs{\abs{#1}}}
+\newcommand{\degree}{\ensuremath{^\circ}}
+\newcommand{\defun}[5] {
+    \begin{array}{rrcl}
+#1: & #2 & \longrightarrow & #3 \\
+    & #4 & \longmapsto & #5
+    \end{array}
+}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\stirfst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirsnd}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\bell}[1]{\mathcal B_{#1}}
+\newcommand{\seg}[1]{\overline{#1}}
+
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\vmat}[1]{\begin{vmatrix}#1\end{vmatrix}}
+
+
+\lstdefinestyle{shared}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    xleftmargin=\parindent,
+    showstringspaces=false,
+    basicstyle=\fontsize{6.0}{6.5}\ttfamily,
+}
+\lstdefinestyle{cpp}{
+    style=shared,
+    language=C++,
+    keywordstyle=\bfseries\color{black!40!black},
+    commentstyle=\itshape\color{red!80!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{purple!40!black},
+}
+\lstdefinestyle{java}{
+    style=shared,
+    language=Java,
+    keywordstyle=\bfseries\color{black!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
+\lstdefinestyle{py}{
+    style=shared,
+    language=Python,
+    keywordstyle=\bfseries\color{black!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
+\lstdefinestyle{txt}{
+    style=shared,
+}
+\lstset{escapechar=@}
+\lstset{basicstyle=\large,style=cpp}
+
+
+
+% \title{ACM ICPC team reference}
+
+\begin{document}
+\footnotesize{}
+% \maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+
+\pagebreak
+\input contents.tex
+
+\end{document}

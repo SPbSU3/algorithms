@@ -1,0 +1,29 @@
+\begin{itemize}
+    \item \foreignlanguage{russian}{Общее}
+        \begin{enumerate}
+            \item \foreignlanguage{russian}{В задаче просят выводить массив int-ов посортированным, а я это не делаю.}
+            
+            \item \foreignlanguage{russian}{Бесконечность = максимальному возможному числу
+(когда это приводит к нежелательному результату).}
+
+            \item \foreignlanguage{russian}{НЕправильно: v.resize(q); forn (i, q) v.pb(...)\\ правильно: v.resize(q); forn (i, q) v[i] = ...}
+
+            \item \foreignlanguage{russian}{Аккуратнее с глобальными переменными. В частности, не использовать общий used
+при рекурсивном подсчёте чисел Гранди в стиле
+tmr++; for (int x : sons) used[grundy(x)] = tmr;
+(проблема в том, что used-ы могут перезаписаться, когда мы пойдём в ребёнка).}
+
+        \end{enumerate}
+
+    \item \foreignlanguage{russian}{Геометрия} 
+        \begin{enumerate}
+            \item \foreignlanguage{russian}{Когда смотришь, на какой угол надо повернуть прямую, чтобы она пересекла
+            многоугольник, получается на самом деле два отрезка углов (так как поворот прямой
+                на a in [0, pi) и a + pi есть одно и то же).}
+            \item \foreignlanguage{russian}{Не писать проверку принадлежности точки многоугольники
+            с площадями в случае даблов (хреново с точностью для точек около
+            границы). Правильно с суммой углов.}
+        \end{enumerate}
+
+\end{itemize}
+

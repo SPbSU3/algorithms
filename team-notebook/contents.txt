@@ -1,0 +1,54 @@
+# Any line followed by a '#' character is ignored
+# Section headings must be in square brackets
+# Subsections within a section should follow the format:
+#   [filename within code directory][tab character \t][subsection title]
+
+[Environment]
+../../env/as_tex/vim.tex Vim
+../../env/as_tex/clion.tex Clion
+../../env/code_templates/template.cpp template.cpp
+../../env/code_templates/template.java template.java
+../../env/code_templates/template.py template.py
+
+[Array transforms]
+../array_transforms/hadamard.cpp hadamard 
+../array_transforms/fast_subset_convolution.cpp fast subset convolution
+../array_transforms/fft.cpp fft doubles
+../array_transforms/mod_fft.cpp fft modulo
+
+[Strings]
+../strings/fast_lcs.cpp Fast lcs
+../strings/palindromic_tree.cpp Palindromic tree
+../strings/automaton.cpp Suffix automaton
+../strings/suffix_array.cpp Suffix array
+../strings/manacher.cpp Manacher's algorithm
+
+[Graphs]
+../graphs/dominator_tree.cpp Dominator tree
+../graphs/kuhn_div32.cpp Kuhn / 32
+../graphs/two_chinese.cpp Two chinese
+../graphs/weighted_matroid_intersection.cpp Weighted matroid intersection
+../graphs/weighted_kuhn.cpp Weighted kuhn
+../graphs/dinic.cpp Fast dinic
+
+[Geometry]
+../geometry/geometry.h General templates
+../geometry/convex_hull.cpp Convex hull
+../geometry/halfplanes_intersection.cpp Halfplanes intersection
+
+[Number theory]
+../number_theory/under_line.cpp Integer points under line
+../number_theory/crt.cpp Chinese remainder theorem
+
+[Algebra]
+../algebra/gauss.cpp Gauss
+
+[Notes]
+bugs.tex Bugs
+ideas.tex Ideas
+info.tex Info
+
+[Images]
+hex.tex Hex
+
+
