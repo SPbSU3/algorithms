@@ -14,7 +14,7 @@ vector<pt> convex_hull(vector<pt> pts) {
     sort(pts.begin() + 1, pts.end(), [&](const pt &a, const pt &b) -> bool {
         pt Oa = a - O, Ob = b - O;
         T prod = Oa % Ob;
-        if (fabs(prod) <= eps) {
+        if (fabs(prod) >= eps) {
             return prod > 0;
         }
         return Oa.sqlen() < Ob.sqlen();
